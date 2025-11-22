@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { useAuth } from '@/lib/auth';
-import { PenSquare, LogOut, BookOpen } from 'lucide-react';
+import { PenSquare, LogOut, BookOpen, User } from 'lucide-react';
 
 interface LayoutProps {
   children: ReactNode;
@@ -44,10 +44,18 @@ export default function Layout({ children }: LayoutProps) {
               )}
               
               {user ? (
-                <Button variant="outline" onClick={handleSignOut} className="gap-2">
-                  <LogOut className="h-4 w-4" />
-                  Sign Out
-                </Button>
+                <>
+                  <Link to="/profile">
+                    <Button variant="ghost" className="gap-2">
+                      <User className="h-4 w-4" />
+                      Profil
+                    </Button>
+                  </Link>
+                  <Button variant="outline" onClick={handleSignOut} className="gap-2">
+                    <LogOut className="h-4 w-4" />
+                    Sign Out
+                  </Button>
+                </>
               ) : (
                 <Link to="/auth">
                   <Button>Sign In</Button>
